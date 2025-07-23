@@ -50,8 +50,8 @@
     <!-- Header & Navigation -->
     <header class="bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">
-                <img src="full_color_logo.png" alt="TranTech Solutions Logo" class="h-10 w-auto"> TranTech<span class="text-primary-500">.</span>
+            <a href="#">
+                <img src="http://googleusercontent.com/file_content/1" alt="TranTech Solutions Logo" class="h-10 w-auto">
             </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#services" class="hover:text-primary-500 transition-colors">Services</a>
@@ -176,15 +176,16 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-white">Let's Build Your Future</h2>
                 <p class="mt-4 text-gray-400">Fill out the form below for a no-obligation consultation and quote.</p>
             </div>
-            <form action="#" method="POST" class="space-y-6">
+            <!-- UPDATED FORM -->
+            <form id="contact-form" class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Your Name" class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
-                    <input type="email" placeholder="Your Email" class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
+                    <input type="text" id="contact-name" placeholder="Your Name" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
+                    <input type="email" id="contact-email" placeholder="Your Email" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
                 </div>
-                <input type="text" placeholder="Subject" class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
-                <textarea placeholder="Tell us about your project..." rows="5" class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none"></textarea>
+                <input type="text" id="contact-subject" placeholder="Subject" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
+                <textarea id="contact-message" placeholder="Tell us about your project..." rows="5" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none"></textarea>
                 <div class="text-center">
-                    <button type="submit" class="bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg px-12 py-3 rounded-lg transition-colors">
+                    <button type="submit" id="submit-button" class="bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg px-12 py-3 rounded-lg transition-colors">
                         Send Message
                     </button>
                 </div>
@@ -200,8 +201,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu -->
+    <!-- JavaScript for Mobile Menu and Mailto Form -->
     <script>
+        // --- Mobile Menu ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         
@@ -215,6 +217,29 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
+        });
+
+        // --- Mailto Contact Form ---
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const subject = document.getElementById('contact-subject').value;
+            const message = document.getElementById('contact-message').value;
+
+            const mailtoSubject = encodeURIComponent(subject);
+            const mailtoBody = encodeURIComponent(
+                `Name: ${name}\n` +
+                `Email: ${email}\n\n` +
+                `Message:\n${message}`
+            );
+
+            // Replace with your actual email address
+            const yourEmail = 'me@jonathanvutran.com';
+            
+            window.location.href = `mailto:${yourEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
         });
     </script>
 </body>
