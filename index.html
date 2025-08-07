@@ -5,241 +5,452 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TranTech Solutions - Expert IT Consulting</title>
     
-    <!-- Tailwind CSS via CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Custom Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': {
-                            '500': '#3b82f6', // blue-500
-                            '600': '#2563eb', // blue-600
-                            '700': '#1d4ed8', // blue-700
-                        },
-                        'neutral': {
-                            '800': '#1f2937', // gray-800
-                            '900': '#111827', // gray-900
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Basic Styling -->
+    <!-- Custom Styles -->
     <style>
         body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #ccd6f6;
+        }
+        /* Custom gradient text using new primary color */
+        .gradient-text {
+            background: linear-gradient(90deg, #5271ff, #8096ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        /* Custom button styles with new primary color shadow */
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(82, 113, 255, 0.2);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(82, 113, 255, 0.4);
+        }
+        /* Service card styles with new primary color hover */
+        .service-card {
+            background-color: #112240;
+            transition: all 0.3s ease;
+            border: 1px solid #1e2d50;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #5271ff;
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+        /* Custom focus rings for accessibility with new primary color */
+        input:focus, textarea:focus, select:focus {
+            outline: 2px solid #5271ff;
+            outline-offset: 2px;
+            border-color: transparent !important;
+        }
+        /* Floating animation for the logo */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animated-logo {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="bg-neutral-900 text-gray-300">
+<body class="antialiased">
 
-    <!-- Header & Navigation -->
-    <header class="bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-50">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-opacity-90 backdrop-blur-md transition-all duration-300 ease-in-out" style="background-color: rgba(10, 25, 47, 0.85);">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#">
-                <img src="images/logo_long.svg" alt="TranTech Solutions Logo" class="h-10 w-auto">
-            </a>
+            <a href="#" class="text-2xl font-bold gradient-text"><img src="https://raw.githubusercontent.com/trantechsolutions/trantech-landing-page/main/images/logo_long.svg" alt="TranTech Logo" class="h-10"></a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="hover:text-primary-500 transition-colors">Services</a>
-                <a href="#about" class="hover:text-primary-500 transition-colors">About Us</a>
-                <a href="#why-us" class="hover:text-primary-500 transition-colors">Why Choose Us</a>
-                <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white font-semibold px-5 py-2 rounded-lg transition-colors">
-                    Get a Quote
-                </a>
+                <a href="#services" class="text-slate-300 hover:text-[#5271ff] transition-colors">Services</a>
+                <a href="#process" class="text-slate-300 hover:text-[#5271ff] transition-colors">Our Process</a>
+                <a href="#about" class="text-slate-300 hover:text-[#5271ff] transition-colors">About</a>
+                <a href="#contact" class="text-slate-300 hover:text-[#5271ff] transition-colors">Contact</a>
             </div>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
+            <a href="#contact" class="hidden md:block bg-[#5271ff] text-white font-semibold px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors cta-button">Get a Quote</a>
+            <button id="mobile-menu-button" class="md:hidden text-slate-300 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#services" class="block py-2 hover:text-primary-500">Services</a>
-            <a href="#about" class="block py-2 hover:text-primary-500">About Us</a>
-            <a href="#why-us" class="block py-2 hover:text-primary-500">Why Choose Us</a>
-            <a href="#contact" class="block mt-2 text-center bg-primary-600 hover:bg-primary-700 text-white font-semibold px-5 py-2 rounded-lg">Get a Quote</a>
+            <a href="#services" class="block py-2 text-slate-300 hover:text-[#5271ff]">Services</a>
+            <a href="#process" class="block py-2 text-slate-300 hover:text-[#5271ff]">Our Process</a>
+            <a href="#about" class="block py-2 text-slate-300 hover:text-[#5271ff]">About</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-[#5271ff]">Contact</a>
+            <a href="#contact" class="block mt-2 bg-[#5271ff] text-white text-center font-semibold px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors cta-button">Get a Quote</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative py-20 md:py-32 bg-neutral-900">
-        <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2832&auto=format&fit=crop');"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
-                Driving Business Growth with <span class="text-primary-500">Strategic IT Solutions</span>
-            </h1>
-            <p class="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                We provide expert IT consulting services to streamline your operations, enhance security, and accelerate your digital transformation journey.
-            </p>
-            <a href="#contact" class="mt-8 inline-block bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg px-8 py-4 rounded-lg transition-transform transform hover:scale-105">
-                Schedule a Free Consultation
-            </a>
-        </div>
-    </section>
+    <!-- Canvas for Particle Animation -->
+    <div id="particles-js" class="absolute top-0 left-0 w-full h-screen z-0"></div>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-neutral-800">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Our Core Services</h2>
-                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">We offer a comprehensive suite of services to meet your unique technology needs.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-neutral-900 p-8 rounded-lg shadow-lg text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-600/20 text-primary-500 mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 items-center gap-16 w-full">
+                <div class="max-w-3xl" data-aos="fade-right">
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-100 leading-tight">
+                        Expert IT Consulting to <span class="gradient-text">Drive Your Business Forward</span>
+                    </h1>
+                    <p class="mt-6 text-lg text-slate-400 max-w-xl">
+                        We are a consulting group that architects, implements, and manages robust technology solutions to accelerate growth, enhance security, and streamline your operations.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#services" class="bg-[#5271ff] text-white font-bold px-8 py-3 rounded-md hover:bg-opacity-90 cta-button text-lg">Our Consulting Services</a>
+                        <a href="#contact" class="border-2 border-[#5271ff] text-[#5271ff] font-bold px-8 py-3 rounded-md hover:bg-[#5271ff] hover:text-white transition-colors duration-300 text-lg">Contact Us</a>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Cloud Solutions</h3>
-                    <p class="text-gray-400">Scalable and secure cloud infrastructure design, migration, and management on AWS, Azure, and Google Cloud.</p>
                 </div>
-                <!-- Service Card 2 -->
-                <div class="bg-neutral-900 p-8 rounded-lg shadow-lg text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-600/20 text-primary-500 mx-auto mb-6">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                <div class="hidden lg:flex justify-center items-center" data-aos="fade-left" data-aos-delay="200">
+                    <img src="https://raw.githubusercontent.com/trantechsolutions/trantech-landing-page/main/images/Full%20Color%20Logo.svg" alt="TranTech Animated Logo" class="w-full max-w-md animated-logo">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-slate-100">Consulting-Led Services</h2>
+                    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">Our consultative approach ensures every solution is strategically aligned with your unique business objectives.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card 1: Solutioning -->
+                    <div class="service-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-[#2b5389] h-16 w-16 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#5271ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100 mb-4">Solutioning Services</h3>
+                        <p class="text-slate-400">Custom technology roadmaps and architecture design to align your IT infrastructure with your strategic business goals.</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Cybersecurity</h3>
-                    <p class="text-gray-400">Comprehensive security audits, threat mitigation, and compliance strategies to protect your digital assets.</p>
-                </div>
-                <!-- Service Card 3 -->
-                <div class="bg-neutral-900 p-8 rounded-lg shadow-lg text-center">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-600/20 text-primary-500 mx-auto mb-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    <!-- Service Card 2: Process Management -->
+                    <div class="service-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-[#2b5389] h-16 w-16 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#5271ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100 mb-4">Process Management</h3>
+                        <p class="text-slate-400">Optimizing your workflows and automating tasks to increase efficiency, reduce costs, and improve operational agility.</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-3">Managed IT Services</h3>
-                    <p class="text-gray-400">Proactive 24/7 monitoring, helpdesk support, and IT infrastructure management to ensure business continuity.</p>
+                    <!-- Service Card 3: Cybersecurity -->
+                    <div class="service-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                        <div class="bg-[#2b5389] h-16 w-16 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#5271ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100 mb-4">Cybersecurity</h3>
+                        <p class="text-slate-400">Comprehensive security audits, threat mitigation, and compliance strategies to protect your digital assets 24/7.</p>
+                    </div>
+                    <!-- Service Card 4: Cloud Services -->
+                    <div class="service-card p-8 rounded-lg" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-[#2b5389] h-16 w-16 rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#5271ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-100 mb-4">Cloud Services</h3>
+                        <p class="text-slate-400">Scalable and secure cloud infrastructure design, migration, and management on AWS, Azure, and Google Cloud.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Us Section -->
-    <section id="about" class="py-20 bg-neutral-900">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop" alt="Our team in a meeting" class="rounded-lg shadow-2xl">
+        <!-- Process Section -->
+        <section id="process" class="py-20 lg:py-32 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-slate-100">Our Consulting Process</h2>
+                    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">We follow a structured, transparent process to ensure your project's success from start to finish.</p>
                 </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Your Partner in Technology Innovation</h2>
-                    <p class="mt-4 text-gray-400">Founded on the principle of partnership, TranTech Solutions is more than just a vendor; we are an extension of your team. Our certified experts bring decades of experience from diverse industries to solve your most complex technology challenges.</p>
-                    <p class="mt-4 text-gray-400">We are committed to understanding your business goals first, then applying technology to help you achieve them efficiently and effectively.</p>
+                <div class="relative">
+                    <!-- The connecting line -->
+                    <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-slate-700 -translate-y-1/2" data-aos="fade-in"></div>
+                    <div class="grid md:grid-cols-4 gap-16 relative">
+                        <!-- Step 1 -->
+                        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                            <div class="relative">
+                                <div class="mx-auto w-24 h-24 rounded-full bg-[#5271ff] text-white flex items-center justify-center text-3xl font-bold border-4 border-slate-700">1</div>
+                            </div>
+                            <h3 class="mt-6 text-xl font-bold text-slate-100">Discover & Analyze</h3>
+                            <p class="mt-2 text-slate-400">We start by understanding your business, challenges, and goals through in-depth consultations.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                             <div class="relative">
+                                <div class="mx-auto w-24 h-24 rounded-full bg-[#5271ff] text-white flex items-center justify-center text-3xl font-bold border-4 border-slate-700">2</div>
+                            </div>
+                            <h3 class="mt-6 text-xl font-bold text-slate-100">Strategize & Design</h3>
+                            <p class="mt-2 text-slate-400">We craft a tailored strategy and solution architecture designed for scalability and performance.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                             <div class="relative">
+                                <div class="mx-auto w-24 h-24 rounded-full bg-[#5271ff] text-white flex items-center justify-center text-3xl font-bold border-4 border-slate-700">3</div>
+                            </div>
+                            <h3 class="mt-6 text-xl font-bold text-slate-100">Implement & Integrate</h3>
+                            <p class="mt-2 text-slate-400">Our experts handle the seamless implementation and integration of the new solution into your environment.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                             <div class="relative">
+                                <div class="mx-auto w-24 h-24 rounded-full bg-[#5271ff] text-white flex items-center justify-center text-3xl font-bold border-4 border-slate-700">4</div>
+                            </div>
+                            <h3 class="mt-6 text-xl font-bold text-slate-100">Optimize & Support</h3>
+                            <p class="mt-2 text-slate-400">We provide ongoing support and optimization to ensure your technology continues to deliver value.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="py-20 lg:py-32">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl font-bold text-slate-100">Your Partner in Technology Innovation</h2>
+                        <p class="mt-6 text-lg text-slate-400">
+                            Founded on the principle of partnership, TranTech Solutions is more than just a vendor; we are an extension of your team. Our consulting philosophy is built on a deep understanding of your business, allowing our certified experts to solve your most complex technology challenges.
+                        </p>
+                        <p class="mt-4 text-lg text-slate-400">
+                            We are committed to understanding your business goals first, then applying technology to help you achieve them efficiently and effectively.
+                        </p>
+                        <div class="mt-8 flex space-x-8">
+                            <div>
+                                <p class="text-4xl font-bold gradient-text">10+</p>
+                                <p class="text-slate-400">Years of Experience</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold gradient-text">99%</p>
+                                <p class="text-slate-400">Client Satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos="fade-left" class="relative">
+                        <div class="bg-slate-800 rounded-lg p-4">
+                            <img src="https://raw.githubusercontent.com/trantechsolutions/trantech-landing-page/main/images/Full%20Color%20Logo%20Only.svg" alt="TranTech Logo" class="rounded-lg w-full h-auto bg-[#112240]">
+                        </div>
+                        <div class="absolute -top-8 -left-8 w-32 h-32 bg-[#5271ff] rounded-full opacity-10 -z-10"></div>
+                        <div class="absolute -bottom-8 -right-8 w-48 h-48 border-4 border-slate-700 rounded-lg -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="py-20 bg-neutral-800">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Why Partner with TranTech?</h2>
-                 <p class="mt-4 text-gray-400 max-w-2xl mx-auto">We deliver tangible results, not just technology.</p>
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 lg:py-32 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold text-slate-100">Let's Build Your Future</h2>
+                    <p class="mt-4 text-slate-400 max-w-2xl mx-auto">Ready to elevate your technology infrastructure? Fill out the form below for a no-obligation consultation.</p>
+                </div>
+                <div class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <form id="contact-form" action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="sr-only">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" required class="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-slate-300 placeholder-slate-500 focus:ring-0">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Your Email" required class="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-slate-300 placeholder-slate-500 focus:ring-0">
+                        </div>
+                        <div>
+                            <label for="service" class="sr-only">Service of Interest</label>
+                            <select id="service" name="service" class="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-slate-300 focus:ring-0">
+                                <option class="text-slate-500">Select a service...</option>
+                                <option>Solutioning Services</option>
+                                <option>Process Management</option>
+                                <option>Cybersecurity</option>
+                                <option>Cloud Services</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Message</label>
+                            <textarea name="message" id="message" rows="4" placeholder="Your Message" required class="w-full bg-slate-800 border border-slate-700 rounded-md p-3 text-slate-300 placeholder-slate-500 focus:ring-0"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-[#5271ff] text-white font-bold p-4 rounded-md hover:bg-opacity-90 cta-button text-lg">Send Message</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <h3 class="text-5xl font-bold text-primary-500">10+</h3>
-                    <p class="mt-2 font-semibold text-white">Years of Experience</p>
-                </div>
-                <div>
-                    <h3 class="text-5xl font-bold text-primary-500">99%</h3>
-                    <p class="mt-2 font-semibold text-white">Client Satisfaction Rate</p>
-                </div>
-                <div>
-                    <h3 class="text-5xl font-bold text-primary-500">24/7</h3>
-                    <p class="mt-2 font-semibold text-white">Dedicated Support</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-neutral-900">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Let's Build Your Future</h2>
-                <p class="mt-4 text-gray-400">Fill out the form below for a no-obligation consultation and quote.</p>
-            </div>
-            <!-- UPDATED FORM -->
-            <form id="contact-form" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" id="contact-name" placeholder="Your Name" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
-                    <input type="email" id="contact-email" placeholder="Your Email" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
-                </div>
-                <input type="text" id="contact-subject" placeholder="Subject" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none">
-                <textarea id="contact-message" placeholder="Tell us about your project..." rows="5" required class="w-full bg-neutral-800 border border-neutral-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-primary-500 focus:outline-none"></textarea>
-                <div class="text-center">
-                    <button type="submit" id="submit-button" class="bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg px-12 py-3 rounded-lg transition-colors">
-                        Send Message
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-neutral-800 border-t border-neutral-700">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+    <footer class="bg-slate-900/50">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-400">
             <p>&copy; 2025 TranTech Solutions. All Rights Reserved.</p>
             <p class="text-sm mt-2">Greater New Orleans Area</p>
         </div>
     </footer>
 
-    <!-- JavaScript for Mobile Menu and Mailto Form -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // --- Mobile Menu ---
+        // Initialize AOS (Animate on Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+        });
+
+        // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
 
         // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-        mobileMenuLinks.forEach(link => {
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
         });
+        
+        // Header shadow on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.style.boxShadow = '0 10px 30px -10px rgba(2, 12, 27, 0.7)';
+                header.style.paddingTop = '0.75rem';
+                header.style.paddingBottom = '0.75rem';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.paddingTop = '1rem';
+                header.style.paddingBottom = '1rem';
+            }
+        });
 
-        // --- Mailto Contact Form ---
+        // Contact Form Mailto Logic
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault();
 
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
 
-            const mailtoSubject = encodeURIComponent(subject);
+            const mailtoSubject = encodeURIComponent(`Inquiry from ${name} about ${service}`);
             const mailtoBody = encodeURIComponent(
                 `Name: ${name}\n` +
                 `Email: ${email}\n\n` +
                 `Message:\n${message}`
             );
 
-            // Replace with your actual email address
+            // IMPORTANT: Replace with your actual email address
             const yourEmail = 'me@jonathanvutran.com';
             
             window.location.href = `mailto:${yourEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+        });
+
+        // Initialize Particles.js with new colors
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 60,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#5271ff" // Primary color for particles
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#5271ff", // Primary color for lines
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 0.5
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
         });
     </script>
 </body>
